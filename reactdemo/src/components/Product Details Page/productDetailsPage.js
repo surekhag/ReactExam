@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import {getProductDetails} from '../../actions/productDetailsActions';
-
+import ProductInfo from '../productInfo/productInfo';
+import {  Redirect } from 'react-router-dom';
 const ProductDetailsPage =(props)=>{
-    const token = localStorage.getItem('token');    
+    const token = localStorage.getItem('token');
     let data =props.productDeatils;
     useEffect(()=>{         
       props.getProductDetails(props.match.params.id);
@@ -15,13 +16,8 @@ const ProductDetailsPage =(props)=>{
     }
 return(
     <div>
-        
-        {props.productDeatils ? <div key={data.sfid}>
-            <p>{data.sfdcName}</p>
-            <p> {data.shortDesc}</p>
-       <p> SKU : {data.SKU} </p>
-       <img src={data.compositeProducts[0].EProductMedia.smallURI}/>
-        </div> : 'Loading ..'}
+        {token ? "" : <Redirect to='/login' />}
+        {props.productDeatils ? <ProductInfo productData = {data} /> : 'Loading Contents..'}
     </div>
 )
 
@@ -35,4 +31,4 @@ const mapStateToProps =(state)=>({
     getProductDetails : (productId)=>dispatch(getProductDetails(productId))
     });
     
-    export default connect(mapStateToProps,mapDispatchToProps)(ProductDetailsPage);
+export default connect(mapStateToProps,mapDispatchToProps)(ProductDetailsPage);

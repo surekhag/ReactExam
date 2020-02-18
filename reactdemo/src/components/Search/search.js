@@ -15,7 +15,7 @@ const handleSearch  =(event)=>{
         event.preventDefault();           
         if(searchTerm){}
         props.searchProduct(searchTerm);
-        setSearchTerm('');
+        // setSearchTerm('');
       }
 
 return(
@@ -34,11 +34,11 @@ return(
             name="email"
             autoComplete="search"
             autoFocus      
-            value={searchTerm}                
+            // value={searchTerm}                
             onChange = {event =>{setSearchTerm(event.target.value)}}
           />
           </form>
-                </Grid>
+              </Grid>
               </Container>
             {props.searchResult? <ProductListing productData = {props.searchResult}/> : ''}  
                
