@@ -6,9 +6,11 @@ import Container from '@material-ui/core/Container';
 import {searchProduct,clearSearchResult } from '../../actions/searchActions';
 import { connect } from 'react-redux';
 import ProductListing from '../ProductListing/productListing'
+import {  Redirect } from 'react-router-dom';
 
 const SearchPage =(props)=>{    
 const [searchTerm, setSearchTerm] = useState();
+const token = localStorage.getItem('token');
 useEffect(()=>{
   //Clear products when visited back to serach page from PDP
   props.clearSearchResult();
@@ -25,6 +27,7 @@ const handleSearch  =(event)=>{
 return(
     <div>
         <Container>
+        {token ? "" : <Redirect to='/login' />}
         <h1>Search Products</h1>            
             <Grid item md={3}>
             <form  noValidate onSubmit = {handleSearch}>

@@ -119,7 +119,7 @@ const handleSubmitForm  =(e)=>{
 }
 
 // const mapStateToProps =(state)=>({
-// status  : state.status
+// error  : state.loginReducer.error
 // });
 
 const mapDispatchToProps = (dispatch)=>({
